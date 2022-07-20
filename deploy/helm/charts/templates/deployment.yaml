@@ -11,8 +11,9 @@ metadata:
 spec:
   replicas: {{ .Values.localpv.replicas }}
   strategy:
-    type: "Recreate"
-    rollingUpdate: null
+    type: "RollingUpdate"
+    rollingUpdate:
+      maxUnavailable: 0
   selector:
     matchLabels:
       {{- include "localpv.selectorLabels" . | nindent 6 }}
